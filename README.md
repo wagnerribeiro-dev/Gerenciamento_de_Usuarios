@@ -14,7 +14,7 @@ Este projeto é uma aplicação completa de gerenciamento de usuários que inclu
   - `PUT /users/:id`: Atualiza um usuário existente.
   - `DELETE /users/:id`: Remove um usuário.
 
-- **Banco de Dados**: Utiliza PostgreSQL (ou MySQL), com um esquema básico contendo `id`, `nome`, `email`, e `senha` (armazenamento seguro de senha).
+- **Banco de Dados**: Utiliza PostgreSQL, com um esquema básico contendo `id`, `nome`, `email`, e `senha` (armazenamento seguro de senha).
 
 - **Sem ORM**: Implementação direta com SQL.
 
@@ -36,13 +36,6 @@ Este projeto é uma aplicação completa de gerenciamento de usuários que inclu
   - Para o backend Node.js.
 
 - **docker-compose**: Orquestra o backend, frontend e o banco de dados. Inicie todos os serviços com `docker-compose up`.
-
-## Requisitos Adicionais
-
-- **TypeScript**: Usado tanto no frontend quanto no backend.
-- **Validações**: Garantia de nome e e-mail válidos para criação e atualização de usuários.
-- **Autenticação**: Implementação de autenticação básica (ex: JWT) para proteção das rotas.
-- **Estilização**: Estilos básicos para uma interface amigável.
 
 ## Instruções para Execução
 

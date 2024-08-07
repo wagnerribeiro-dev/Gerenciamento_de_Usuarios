@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                       // Define a versão ECMAScript alvo para o JavaScript gerado
+    "module": "commonjs",                     // Define o sistema de módulos a ser usado
+    "outDir": "./dist",                       // Diretório onde o código compilado será colocado
+    "rootDir": "./src",                       // Diretório raiz dos arquivos TypeScript
+    "typeRoots": ["./node_modules/@types"],   // Diretórios onde os tipos TypeScript são definidos
+    "strict": true,                           // Ativa todas as verificações estritas
+    "esModuleInterop": true,                  // Habilita a interoperabilidade entre módulos CommonJS e ES
+    "skipLibCheck": true,                     // Ignora a checagem de tipos dos arquivos de definição de biblioteca
+    "forceConsistentCasingInFileNames": true, // Garante consistência no uso de maiúsculas/minúsculas nos nomes dos arquivos
+    "baseUrl": "./src",                       // Define a base para resolver caminhos relativos
+    "paths": {
+      "@/*": ["*"]                            // Permite o uso de alias de caminhos, se necessário
+    }
+  },
+  "include": [
+    "src/**/*",                               // Inclui todos os arquivos TypeScript dentro da pasta `src`
+    "src/**/*.ts",
+    "src/types/**/*.d.ts"                     // Inclui arquivos de definição de tipos personalizados
+  ],
+  "exclude": [
+    "node_modules",                          // Exclui a pasta `node_modules` da compilação
+    "**/*.spec.ts"                           // Exclui arquivos de teste, se houver
+  ]
+}
+
+
+

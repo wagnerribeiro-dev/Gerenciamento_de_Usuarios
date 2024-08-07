@@ -26,6 +26,8 @@
 </template>
 
 <script>
+import { createUser, updateUser } from '../api/userService';
+
 export default {
   name: 'UserForm',
   computed: {
@@ -36,26 +38,56 @@ export default {
   data() {
     return {
       formData: {
-        id: '', // Adiciona o campo ID
+        id: '',
         name: '',
-        email: '' // Adiciona o campo email
+        email: ''
       }
     };
   },
   methods: {
-    handleSubmit() {
-      // Lógica para submeter o formulário
-      alert('Formulário enviado!');
+    async handleSubmit() {
+      try {
+        if (this.$route.name === 'add-user') {
+          // Adicionar usuário
+          await createUser(this.formData);
+          alert('Usuário adicionado com sucesso!');
+        } else if (this.$route.name === 'edit-user') {
+          // Atualizar usuário
+          await updateUser(this.formData.id, this.formData);
+          alert('Usuário atualizado com sucesso!');
+        }
+        this.$router.push('/');
+      } catch (error) {
+        console.error('Erro ao salvar usuário:', error);
+        alert('Ocorreu um erro ao salvar o usuário.');
+      }
     },
     handleCancel() {
-      // Lógica para cancelar a operação e redirecionar ou limpar o formulário
       this.$router.push('/');
+    }
+  },
+  async created() {
+    if (this.$route.name === 'edit-user') {
+      const userId = this.$route.params.id;
+      try {
+        // Preencher os dados do formulário para edição
+        const response = await axios.get(`http://localhost:3333/users/${userId}`);
+        this.formData = response.data;
+      } catch (error) {
+        console.error('Erro ao carregar dados do usuário:', error);
+        alert('Ocorreu um erro ao carregar os dados do usuário.');
+      }
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
+/* Estilos permanecem os mesmos */
+h1 {
+  color: #42b983; 
+}
+
 @media (max-width: 768px) {
   .user-form {
     margin-top: 20px;
@@ -139,5 +171,6 @@ h1 {
   background-color: #e0e0e0;
 }
 </style>
+
 
 

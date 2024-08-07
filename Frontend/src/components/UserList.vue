@@ -14,23 +14,33 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'UserList',
   data() {
     return {
-      users: [
-        { id: 1, name: 'Usuário' },
-        { id: 2, name: 'Usuário' },
-        { id: 2, name: 'Usuário' },
-        { id: 2, name: 'Usuário' }
-
-      ]
+      users: []  // Inicializa como um array vazio
     };
+  },
+  async created() {
+    try {
+      // Substitua a URL pelo endpoint correto do seu backend
+      const response = await axios.get('http://localhost:5000/api/users');
+      this.users = response.data;
+    } catch (error) {
+      console.error('Erro ao buscar usuários:', error);
+    }
   }
 }
 </script>
 
-<style scoped>
+<style>
+/* Mantenha os estilos existentes */
+h1 {
+  color: #42b983; /* Cor desejada */
+}
+
 .user-list {
   text-align: center;
   margin-top: 50px;

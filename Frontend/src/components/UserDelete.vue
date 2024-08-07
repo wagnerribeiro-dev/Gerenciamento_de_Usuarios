@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import axios from 'axios'; // Importe axios para fazer requisições HTTP
+
 export default {
   name: 'UserDelete',
   computed: {
@@ -16,10 +18,16 @@ export default {
     }
   },
   methods: {
-    deleteUser() {
-      // Lógica para deletar o usuário
-      alert(`Usuário com ID ${this.userId} deletado!`);
-      this.$router.push('/');
+    async deleteUser() {
+      try {
+        // Requisição DELETE para o backend
+        await axios.delete(`http://localhost:3333/users/${this.userId}`);
+        alert(`Usuário com ID ${this.userId} deletado com sucesso!`);
+        this.$router.push('/');
+      } catch (error) {
+        console.error('Erro ao deletar usuário:', error);
+        alert('Ocorreu um erro ao tentar deletar o usuário.');
+      }
     },
     cancelDelete() {
       this.$router.push('/');
@@ -61,3 +69,5 @@ button:last-of-type:hover {
   background-color: #7f8c8d;
 }
 </style>
+
+

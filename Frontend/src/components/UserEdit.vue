@@ -23,6 +23,8 @@
 </template>
 
 <script>
+import { getUserById, updateUser } from '../api/userService';
+
 export default {
   name: 'EditUser',
   data() {
@@ -35,21 +37,30 @@ export default {
     };
   },
   methods: {
-    saveUser() {
-      // Lógica para salvar o usuário
-      console.log('Usuário salvo:', this.user);
+    async saveUser() {
+      try {
+        await updateUser(this.user.id, this.user);
+        alert('Usuário salvo com sucesso!');
+        this.$router.push('/');
+      } catch (error) {
+        console.error('Erro ao salvar o usuário:', error);
+        alert('Erro ao salvar o usuário.');
+      }
     },
     cancelEdit() {
-      // Lógica para cancelar a edição e voltar à página anterior
       this.$router.push('/');
     }
   },
-  mounted() {
-    // Simula a obtenção de dados do usuário. Substitua com sua lógica de API.
+  async mounted() {
     const userId = this.$route.params.id;
-    if (userId) {
-      // Substitua com chamada real à API
-      this.user = { id: userId, name: 'Nome do Usuário', email: 'email@dominio.com' };
+    try {
+      if (userId) {
+        const response = await getUserById(userId);
+        this.user = response.data;
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dados do usuário:', error);
+      alert('Erro ao carregar dados do usuário.');
     }
   }
 }

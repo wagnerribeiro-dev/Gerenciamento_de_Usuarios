@@ -9,25 +9,25 @@ const routes = [
     path: '/',
     name: 'user-list',
     component: UserList,
-    meta: { title: 'Lista de Usuários - Gerenciador de Usuários' }
+    meta: { title: 'Lista de Usuários' }
   },
   {
     path: '/adicionar',
     name: 'add-user',
     component: UserForm,
-    meta: { title: 'Adicionar Usuário - Gerenciador de Usuários' }
+    meta: { title: 'Adicionar Usuário' }
   },
   {
     path: '/editar',
     name: 'edit-user',
     component: UserEdit,
-    meta: { title: 'Editar Usuário - Gerenciador de Usuários' }
+    meta: { title: 'Editar Usuário' }
   },
   {
     path: '/deletar/',
     name: 'delete-user',
     component: UserDelete,
-    meta: { title: 'Deletar Usuário - Gerenciador de Usuários' }
+    meta: { title: 'Deletar Usuário' }
   }
 ];
 

@@ -1,6 +1,12 @@
-import { Router, Request, Response, NextFunction } from 'express';
-import { body, validationResult } from 'express-validator';
-import { getUsers, createUser, updateUser, deleteUser, loginUser } from '../controllers/userController';
+import { Router } from 'express';
+import { body } from 'express-validator';
+import {
+  getUsers,
+  createUser,
+  updateUser,
+  deleteUser,
+  loginUser
+} from '../controllers/userController';
 import authMiddleware from '../middleware/authMiddleware';
 import handleValidationErrors from '../middleware/handleValidationErrors';
 
@@ -26,14 +32,17 @@ const validateLogin = [
 ];
 
 // Rotas com validação
+// Obter todos os usuários
 router.get('/users', authMiddleware, getUsers);
 
+// Criar um novo usuário
 router.post('/users',
   validateUser,
   handleValidationErrors,
   createUser
 );
 
+// Atualizar um usuário existente
 router.put('/users/:id',
   authMiddleware,
   validateUser,
@@ -41,8 +50,10 @@ router.put('/users/:id',
   updateUser
 );
 
+// Deletar um usuário existente
 router.delete('/users/:id', authMiddleware, deleteUser);
 
+// Login do usuário
 router.post('/login',
   validateLogin,
   handleValidationErrors,
@@ -50,3 +61,4 @@ router.post('/login',
 );
 
 export default router;
+

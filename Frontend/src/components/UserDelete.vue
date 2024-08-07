@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import axios from 'axios'; // Importe axios para fazer requisições HTTP
+import axios from 'axios'; // Certifique-se de importar axios
 
 export default {
   name: 'UserDelete',
@@ -21,7 +21,7 @@ export default {
     async deleteUser() {
       try {
         // Requisição DELETE para o backend
-        await axios.delete(`http://localhost:3333/users/${this.userId}`);
+        await axios.delete(`http://localhost:3333/api/users/${this.userId}`); // Atualize a URL se necessário
         alert(`Usuário com ID ${this.userId} deletado com sucesso!`);
         this.$router.push('/');
       } catch (error) {

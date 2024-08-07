@@ -25,11 +25,12 @@ export default {
   },
   async created() {
     try {
-      // Substitua a URL pelo endpoint correto do seu backend
-      const response = await axios.get('http://localhost:5000/api/users');
+      const response = await axios.get('http://localhost:3333/api/users'); // URL atualizada
       this.users = response.data;
     } catch (error) {
       console.error('Erro ao buscar usuários:', error);
+      // Adicione uma mensagem de erro ou tratamento de erro apropriado
+      alert('Erro ao buscar usuários. Verifique o console para mais detalhes.');
     }
   }
 }

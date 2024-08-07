@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import axios from 'axios'; // Certifique-se de importar o axios
 import { createUser, updateUser } from '../api/userService';
 
 export default {
@@ -71,7 +72,7 @@ export default {
       const userId = this.$route.params.id;
       try {
         // Preencher os dados do formulário para edição
-        const response = await axios.get(`http://localhost:3333/users/${userId}`);
+        const response = await axios.get(`http://localhost:3333/api/users/${userId}`); // Atualizar a URL para refletir a rota correta
         this.formData = response.data;
       } catch (error) {
         console.error('Erro ao carregar dados do usuário:', error);
@@ -171,6 +172,3 @@ h1 {
   background-color: #e0e0e0;
 }
 </style>
-
-
-
